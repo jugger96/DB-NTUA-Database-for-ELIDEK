@@ -1,0 +1,141 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+    
+        <div class="col-md-12">
+            <form class="form-horizontal" name="student-form" method="POST">
+                <!-- hidden_tag returns the form's security metadata -->
+                {{ form.hidden_tag() }}
+            </div>
+            <div class="row" id="row">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.name.label(class = "form-label") }}
+                    <!-- Setting required to false disables the HTML attribute and leaves input validation to the backend -->
+                    {{ form.name(class = "form-control", placeholder="Enter Name", required = False) }}
+                    {% if form.name.errors %}
+                    <ul class = "errors">
+                        {% for error in form.name.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.abbreviation.label(class = "form-label") }}
+                    {{ form.abbreviation(class = "form-control", placeholder="Enter Abbreviation", required = False) }}
+                    {% if form.abbreviation.errors %}
+                    <ul class = "errors">
+                        {% for error in form.abbreviation.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" id="row2">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.postal_code.label(class = "form-label") }}
+                    {{ form.postal_code(class = "form-control", placeholder="Enter Postal Code", required = False) }}
+                    {% if form.postal_code.errors %}
+                    <ul class = "errors">
+                        {% for error in form.postal_code.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.street.label(class = "form-label") }}
+                    {{ form.street(class = "form-control", placeholder="Enter Street", required = False) }}
+                    {% if form.street.errors %}
+                    <ul class = "errors">
+                        {% for error in form.street.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+    </div>
+    <div class="row" id="row2">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.street_number.label(class = "form-label") }}
+                    {{ form.street_number(class = "form-control", placeholder="Enter Street Number", required = False) }}
+                    {% if form.street_number.errors %}
+                    <ul class = "errors">
+                        {% for error in form.street_number.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.city.label(class = "form-label") }}
+                    {{ form.city(class = "form-control", placeholder="Enter City", required = False) }}
+                    {% if form.city.errors %}
+                    <ul class = "errors">
+                        {% for error in form.city.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+    </div>
+    <div class="row" id="row2">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.phone1.label(class = "form-label") }}
+                    {{ form.phone1(class = "form-control", placeholder="Enter Phone Number 1", required = False) }}
+                    {% if form.phone1.errors %}
+                    <ul class = "errors">
+                        {% for error in form.phone1.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.phone2.label(class = "form-label") }}
+                    {{ form.phone2(class = "form-control", placeholder="Enter Phone Number 2", required = False) }}
+                    {% if form.phone2.errors %}
+                    <ul class = "errors">
+                        {% for error in form.phone2.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            
+        </div>
+        <div class="row" id="row2">
+            <div class="form-group col-sm-3 mb-3">
+                {{ form.min_edu_budget.label(class = "form-label") }}
+                {{ form.min_edu_budget(class = "form-control", placeholder="Enter MinEdu Budget (no commas or dots)", required = False) }}
+                {% if form.min_edu_budget.errors %}
+                <ul class = "errors">
+                    {% for error in form.min_edu_budget.errors %}
+                    <li class = "text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="form-group col-sm-3 mb-3">
+                {{ form.private_budget.label(class = "form-label") }}
+                {{ form.private_budget(class = "form-control", placeholder="Enter Private Budget (no commas or dots)", required = False) }}
+                {% if form.private_budget.errors %}
+                <ul class = "errors">
+                    {% for error in form.private_budget.errors %}
+                    <li class = "text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="form-group col-sm-10 mb-3">
+                {{ form.submit(class = "btn btn-primary btn-submit-custom") }}
+                <a class="btn btn-primary" id="show-btn" href="/company">Back</a>
+            </div>
+        </div>
+    </form> 
+    </div>
+    
+</div>
+{% endblock content %}

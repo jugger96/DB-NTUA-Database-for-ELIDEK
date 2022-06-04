@@ -1,0 +1,63 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+    
+        <div class="col-md-12">
+            <form class="form-horizontal" name="student-form" method="POST">
+                <!-- hidden_tag returns the form's security metadata -->
+                {{ form.hidden_tag() }}
+            </div>
+            <div class="row" id="row">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.ID.label(class = "form-label") }}
+                    <!-- Setting required to false disables the HTML attribute and leaves input validation to the backend -->
+                    {{ form.ID(class = "form-control", placeholder="Enter SSN (xxx-xx-xxxx)", required = False) }}
+                    {% if form.ID.errors %}
+                    <ul class = "errors">
+                        {% for error in form.ID.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.First_Name.label(class = "form-label") }}
+                    {{ form.First_Name(class = "form-control", placeholder="Enter First Name", required = False) }}
+                    {% if form.First_Name.errors %}
+                    <ul class = "errors">
+                        {% for error in form.First_Name.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" id="row2">
+                <div class="form-group col-sm-3 mb-3">
+                    {{ form.Last_Name.label(class = "form-label") }}
+                    {{ form.Last_Name(class = "form-control", placeholder="Enter Last Name", required = False) }}
+                    {% if form.Last_Name.errors %}
+                    <ul class = "errors">
+                        {% for error in form.Last_Name.errors %}
+                        <li class = "text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                
+    </div>
+    
+    <div class="row" id="row2">
+                
+                
+                <div class="form-group col-sm-10 mb-3">
+                {{ form.submit(class = "btn btn-primary btn-submit-custom") }}
+                <a class="btn btn-primary" id="show-btn" href="/executive">Back</a>
+            </div>
+            </form>
+        </div> 
+    </div>
+    
+</div>
+{% endblock content %}

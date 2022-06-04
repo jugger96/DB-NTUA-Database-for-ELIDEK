@@ -1,0 +1,139 @@
+{% extends "global_layout.html" %}
+{% block content %}
+
+<div class="container">
+    {% include "flash_messages.html" %}
+    <div class="row" id="row">
+        <div class="col-md-12">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                {% if deliverable|length == 0 %}
+                    <h1 style="margin-top: 5rem;">No Programs found!</h1>
+                {% else %}
+                    <div class="table-responsive">                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <a class="btn btn-primary" id="show-btn" href="/deliverable/create">Add new Deliverable</a>
+                                    <th>Project ID</th> 
+                                    <th>Deliverable ID</th>
+                                    <th>Title</th>
+                                    <th>Summary</th>
+                                    <th>Submission Date</th>                                                                       
+                                    <th></tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in deliverable %}
+                                    <tr>
+                                        <td> {{ d.Project_ID }} </td>
+                                        <td> {{ d.ID }} </td>
+                                        <td> {{ d.Title }} </td>
+                                        <td> {{ d.Summary }} </td>
+                                        <td> {{ d.Submission_Date }} </td>                                        
+                                        <td>
+                                            <a type="button" onclick="setModalFields(this)"
+                                            data-toggle="modal"
+                                            data-ID="{{ d.ID }}"
+                                            data-Title="{{ d.Title }}"                                            
+                                            data-Summary="{{ d.Summary }}"
+                                            data-Submission_Date="{{ d.Submission_Date }}"                                            
+                                            data-Project_ID="{{ d.Project_ID }}"                                                
+                                            data-bs-toggle = "modal"
+                                            data-bs-target="#editModal">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button style = "all: unset; cursor: pointer;" type = "button"
+                                            data-bs-toggle = "modal" data-bs-target = "#deleteModal"
+                                            data-ID = "{{ d.ID }}" onclick = "setDeleteModalFields(this)">
+                                                <i class = "fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit modal -->
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Deliverable</h4>
+            </div>
+            <div class="modal-body">
+                <form id="modal-form">
+                    {{ form.hidden_tag() }}
+                    <div style="text-align: center;">
+                        <input type="text" id="ID" readonly>
+                        {{ form.title(id = "Title", required = TRUE) }}
+                        {{ form.summary(id = "Summary", required = TRUE) }}
+                        {{ form.submission_date(id = "Submission_Date", required = TRUE) }}
+                    </div>
+                      
+                </form>
+            </div>
+            <div class="modal-footer">
+                {{ form.submit(class = "btn btn btn-success", form = "modal-form", value = "Update") }}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Delete modal -->
+<div class = "modal fade" id="deleteModal">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <h5 class = "modal-title" id = "deleteModalLabel">Delete Deliverable</h5>
+                <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+            </div>
+            <div class = "modal-body">
+                Are you sure?
+            </div>
+            <div class = "modal-footer">
+                <button type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">Close</button>
+                <form id = "delete-modal-form">
+                    <input type = "submit" class = "btn btn-danger" value = "Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<script>
+    function setModalFields(row) {
+        document.getElementById("ID").value = row.getAttribute("data-ID");
+        document.getElementById("Title").value = row.getAttribute("data-Title");
+        document.getElementById("Summary").value = row.getAttribute("data-Summary");
+        document.getElementById("Submission_Date").value = row.getAttribute("data-Submission_Date");
+        document.getElementById("modal-form").action = "/deliverable/update/" + row.getAttribute("data-ID");
+        document.getElementById("modal-form").method = "POST";
+        // document.getElementById("submit").addEventListener("click", (e) => {e.preventDefault();});
+        // commented line above would prevent the default behavior of the submit button, that is, sending the
+        // form data with a post request to the determined address and subsequently closing the pop-up
+    }
+
+    function setDeleteModalFields(row) {
+        document.getElementById("delete-modal-form").action = "/deliverable/delete/" + row.getAttribute("data-ID");
+        document.getElementById("delete-modal-form").method = "POST";
+    }
+</script>
+{% endblock content %}
