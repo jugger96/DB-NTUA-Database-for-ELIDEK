@@ -29,7 +29,7 @@ This package integrates the [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) 
 
 Από το command promt του ανακόντα με χρήση του cd μπαίνουμε στο directory του folder που κατεβάσαμε από το github.
 
-Έπειτα πληκτρολογούμε και τρέχουμε την εντολή `pip install requirements.txt` ώστε να εγκαταστήσουμε όλα τα απαραίτητα πακέτα για το framework του webapp και για τη σύνδεση της βάσης με αυτό.
+Έπειτα πληκτρολογούμε και τρέχουμε την εντολή `pip install -r requirements.txt` ώστε να εγκαταστήσουμε όλα τα απαραίτητα πακέτα για το framework του webapp και για τη σύνδεση της βάσης με αυτό.
 
 Στη συνέχεια ,και αφού έχουμε κατοχυρώσει και επιβεβαιώσει σύνδεση κάνοντας χρήση του xampp (“run as administrator”), εκτελούμε τα αρχεία `schema.sql`, `triggers.sql`, `views.sql` και `data.sql` με την σειρά που αναγράφονται, ενδεικτικά μέσω του `MySQL wokbench`, έτσι ώστε να φτιάξουμε τη βάση μας, με όλα τα tables, triggers και views που είναι απαραίτητα για την ορθή λειτουργεία της, και να τη γεμίσουμε με δεδομένα.
 
