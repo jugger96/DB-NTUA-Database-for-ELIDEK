@@ -622,13 +622,3 @@ with open(f"dummy_data.txt", 'w') as f:
     f.write("-- Inserting data in Project_Scientific_Field table"+'\n'  +'\n')
     f.write(content13)
 
-# companies = ("African Telecommunications Union", "Asia-Pacific Telecommunity", "Caribbean Association of National Telecommunication Organizations",\
-            "Regional Commonwealth in the Field of Communications", "Regional African Satellite Communications Organization", "International Satellite System for Search and Rescue", \
-            "Arab States Broadcasting Union", "Asia Pacific Network Information Centre", "Asia-Pacific Broadcasting Union", \
-             "Asociación Interamericana de Empresas de Telecomunicaciones", "Association for Progressive Communications", "Association of Andean Community Telecommunications Enterprises", \
-             "Caribbean Broadcasting Union", "Centre for Environment and Development for the Arab Region and Europe", "Child Helpline International", \
-             "Committee on Space Research", "Commonwealth ITU Group", "Communauté économique des Etats de l'Afrique centrale", \
-             "Consumers International", "Digital Opportunity Trust", "Dominic Foundation", \
-             "East African Communications Organization", "East African Community", "Eastern Caribbean Telecommunications Authority", \
-             "Ecole Supérieure Multinationale des Télécommunications", "European Broadcasting Union", "European Radio Amateurs' Organization", \
-             "FTTH Council Asia-Pacific", "Global Knowledge Partnership Foundation", "Global VSAT Forum Limited")
