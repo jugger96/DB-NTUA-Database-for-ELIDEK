@@ -15,7 +15,6 @@ begin
     if ((timestampdiff(year, new.birth_date, new.foundation_date)) < 12)
     then SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'The researcher seems to be too young for this foundation!';
     END IF;
-    -- INSERT into researcher (age) values (timestampdiff(year, new.foundation_date, new.birth_date));
 end;
 $$
 
@@ -126,6 +125,30 @@ begin
 end;
 $$
 
+delimiter $$
+create trigger boss_dont_leave_us before delete on researcher_works_on_project
+for each row
+begin
+    if exists (select * from project p where (p.researcher_id_boss = old.researcher_id) and (p.id = old.project_id))
+    then 
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'This Relation can`t be deleted because this Researcher is the Manager of this Project';
+    END IF;
+end; 
+$$
+
+delimiter $$
+create trigger field_dont_leave_us before delete on project_scientific_field
+for each row
+begin
+    if not exists (select * from project_scientific_field psf where (psf.scientific_field_name <> old.scientific_field_name) 
+    and (psf.project_id = old.project_id))
+    then 
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'A project can`t be left without a scientific field!';
+    END IF;
+end; 
+$$
 
 -- -----------------------------------------------------
 -- Triggers (Updates)
