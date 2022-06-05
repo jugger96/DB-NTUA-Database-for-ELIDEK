@@ -41,5 +41,5 @@ This package integrates the [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) 
 
 ## Good Practices
 
-Να μη γράφετε ## τίποτα με κεφαλαία γράμματα.
+Να μη γράφετε τίποτα με κεφαλαία γράμματα.
 
