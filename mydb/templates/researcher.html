@@ -1,0 +1,153 @@
+{% extends "global_layout.html" %}
+{% block content %}
+
+<div class="container">
+    {% include "flash_messages.html" %}
+    <div class="row" id="row">
+        <div class="col-md-12">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                {% if researcher|length == 0 %}
+                    <h1 style="margin-top: 5rem;">No Researchers found!</h1>
+                {% else %}
+                    <div class="table-responsive">                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <a class="btn btn-primary" id="show-btn" href="/researcher/create">Add new Researcher</a>
+                                    <th>SSN</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Sex</th>
+                                    <th>Birth Date</th>
+                                    <th>Age</th>
+                                    <th>Foundation Id</th>
+                                    <th>Foundation Date</th>                                    
+                                    <th></tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for res in researcher %}
+                                    <tr>
+                                        <td> {{ res.ID }} </td>
+                                        <td> {{ res.First_Name }} </td>
+                                        <td> {{ res.Last_Name }} </td>
+                                        <td> {{ res.Sex }} </td>
+                                        <td> {{ res.Birth_Date }} </td>
+                                        <td> {{ res.Age }}</td>
+                                        <td> {{ res.Foundation_ID }} </td>
+                                        <td> {{ res.Foundation_Date }} </td>
+                                        <td>
+                                            <a type="button" onclick="setModalFields(this)"
+                                            data-toggle="modal"
+                                            data-ID="{{ res.ID }}"
+                                            data-First_Name="{{ res.First_Name }}"
+                                            data-Last_Name= "{{ res.Last_Name }}"
+                                            data-Sex="{{ res.Sex }}"
+                                            data-Birth_Date="{{ res.Birth_Date }}"
+                                            data-Foundation_ID="{{ res.Foundation_ID }}"
+                                            data-Foundation_Date="{{ res.Foundation_Date }}"
+                                            data-bs-toggle = "modal"
+                                            data-bs-target="#editModal">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button style = "all: unset; cursor: pointer;" type = "button"
+                                            data-bs-toggle = "modal" data-bs-target = "#deleteModal"
+                                            data-ID = "{{ res.ID }}" onclick = "setDeleteModalFields(this)">
+                                                <i class = "fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit modal -->
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Researcher</h4>
+            </div>
+            <div class="modal-body">
+                <form id="modal-form">
+                    {{ form.hidden_tag() }}
+                    <div style="text-align: center;">
+                        <input type="text" id="ID" readonly>
+                        {{ form.First_Name(id = "First_Name", required = TRUE) }}
+                        {{ form.Last_Name(id = "Last_Name", required = TRUE) }}
+                        {{ form.Sex(id = "Sex", required = TRUE) }}
+                        {{ form.Birth_Date(id = "Birth_Date", required = TRUE) }}
+                        {{ form.Foundation_ID(id = "Foundation_ID", required = TRUE) }}
+                        {{ form.Foundation_Date(id = "Foundation_Date", required = True) }}
+                    </div>
+                      
+                </form>
+            </div>
+            <div class="modal-footer">
+                {{ form.submit(class = "btn btn btn-success", form = "modal-form", value = "Update") }}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Delete modal -->
+<div class = "modal fade" id="deleteModal">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <h5 class = "modal-title" id = "deleteModalLabel">Delete researcher</h5>
+                <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+            </div>
+            <div class = "modal-body">
+                Are you sure?
+            </div>
+            <div class = "modal-footer">
+                <button type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">Close</button>
+                <form id = "delete-modal-form">
+                    <input type = "submit" class = "btn btn-danger" value = "Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<script>
+    function setModalFields(row) {
+        document.getElementById("ID").value = row.getAttribute("data-ID");
+        document.getElementById("First_Name").value = row.getAttribute("data-First_Name");
+        document.getElementById("Last_Name").value = row.getAttribute("data-Last_Name");
+        document.getElementById("Sex").value = row.getAttribute("data-Sex");
+        document.getElementById("Birth_Date").value = row.getAttribute("data-Birth_Date");
+        document.getElementById("Foundation_ID").value = row.getAttribute("data-Foundation_ID");
+        document.getElementById("Foundation_Date").value = row.getAttribute("data-Foundation_Date");
+        document.getElementById("modal-form").action = "/researcher/update/" + row.getAttribute("data-ID");
+        document.getElementById("modal-form").method = "POST";
+        // document.getElementById("submit").addEventListener("click", (e) => {e.preventDefault();});
+        // commented line above would prevent the default behavior of the submit button, that is, sending the
+        // form data with a post request to the determined address and subsequently closing the pop-up
+    }
+
+    function setDeleteModalFields(row) {
+        document.getElementById("delete-modal-form").action = "/researcher/delete/" + row.getAttribute("data-ID");
+        document.getElementById("delete-modal-form").method = "POST";
+    }
+</script>
+{% endblock content %}

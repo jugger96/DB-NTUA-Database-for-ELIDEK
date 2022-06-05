@@ -1,0 +1,40 @@
+{% extends "global_layout.html" %}
+{% block content %}
+
+<div class="container">
+    {% include "flash_messages.html" %}
+    <div class="row" id="row">
+        <div class="col-md-12">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                {% if res38|length == 0 %}
+                    <h1 style="margin-top: 5rem;">Nothing matched this query!</h1>
+                {% else %}
+                    <h4>The researchers that work on 5 or more projects with no deliverables</h4>
+                    <div class="table-responsive">                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>                                    
+                                    <th>Last Name</th>                                    
+                                    <th>Number of Projects</tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for res in res38 %}
+                                    <tr>
+                                        <td> {{ res.first_name }} </td>
+                                        <td> {{ res.last_name }} </td>
+                                        <td> {{ res.total_projects }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
