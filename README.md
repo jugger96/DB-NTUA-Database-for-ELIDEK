@@ -1,6 +1,6 @@
 # Databases - ΕΛΙΔΕΚ DB
 
-Adapted from [Databases-Java-Demo](https://github.com/ChristosHadjichristofi/Databases-Java-Demo) and [Databases-NodeJS-Demo](https://github.com/ChristosHadjichristofi/Databases-NodeJS-Demo), originally by [Christos Hadjichristofi](https://github.com/ChristosHadjichristofi).
+Adapted from [Databases-Java-Demo](https://github.com/ChristosHadjichristofi/Databases-Java-Demo) and [Databases-NodeJS-Demo](https://github.com/ChristosHadjichristofi/Databases-NodeJS-Demo), originally by [Christos Hadjichristofi](https://github.com/ChristosHadjichristofi) and [Dimitrios Kyriakidis](https://github.com/DimK19).
 
 Implementation in PHP [here](https://github.com/cpefkianakis/Databases-PHP-Demo).
 
