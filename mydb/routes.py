@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, abort
 from flask_mysqldb import MySQL
 from mydb import app, db ## initially created by __init__.py, need to be used here
-from mydb.forms import StudentForm, ResForm, CreResForm, ProjForm, SciForm, WorksForm, \
+from mydb.forms import  ResForm, CreResForm, ProjForm, SciForm, WorksForm, \
                         CompanyForm, CreCompanyForm, UniversityForm,CreUniversityForm,\
                         CreRCForm,RCForm, PhoneForm, programForm, deliverableForm, \
                         CredeliverableForm, CreExForm, ExForm, psfForm, UpProjForm, CreProjForm, project_worker
@@ -69,13 +69,12 @@ def index():
                                string9 = string9, string10 = string10, string11 = string11, string12 = string12,
                                string13 = string13, string14 = string14)
     except Exception as e:
-        print(e)
         return render_template("landing.html", pageTitle = "Landing Page")
 
 @app.route("/project", methods = ["GET", "POST"])
 def getProject():
     """
-    Retrieve projectss from database
+    Retrieve projects from database
     """
 
     if request.method == "POST":
@@ -85,7 +84,6 @@ def getProject():
             date = request.form["date"]
             dur = request.form["dur"]
             exec_id = request.form["exec_id"]
-            print(date, dur, exec_id)
             if (date == '' and dur == '' and exec_id == ''):
                 query = "SELECT * FROM project where id = 0"
             elif (date == '' and dur == ''):
@@ -150,7 +148,6 @@ def updateproject(projectID):
                     updateData['Program_ID'].data, updateData['Foundation_ID'].data, updateData['Researcher_ID_Boss'].data,\
                     updateData['Researcher_ID_eval'].data, updateData['Evaluation_Date'].data,\
                     updateData['Evaluation_Grade'].data, projectID)
-        print(query)
         try:
             cur = db.connection.cursor()
             cur.execute(query)
@@ -277,7 +274,6 @@ def createproject_worker(projectID):
         worker = form.__dict__
         query = "INSERT INTO researcher_works_on_project (project_id, researcher_id) VALUES ('{}', '{}');"\
                 .format(projectID, worker['researcher_id'].data)
-        print(query)
         try:
             cur = db.connection.cursor()
             cur.execute(query)
@@ -293,7 +289,6 @@ def createproject_worker(projectID):
 
 @app.route("/project/<string:project_ID>", methods = ["POST"])
 def getproject_worker(project_ID):
-    print
     """
     View who works on specific project
     """
@@ -334,7 +329,7 @@ def getResearcher():
 @app.route("/researcher/create", methods = ["GET", "POST"]) ## "GET" by default
 def createRes():
     """
-    Create new student in the database
+    Create new researcher in the database
     """
     form = CreResForm()
            
@@ -396,7 +391,7 @@ def updateresearcher(researcherID):
 @app.route("/researcher/delete/<string:researcherID>", methods = ["POST"])
 def deleteResearcher(researcherID):
     """
-    Delete student by id from database
+    Delete researcher by id from database
     """
     query = f"DELETE FROM researcher WHERE id = '{researcherID}';"
     try:
@@ -449,13 +444,12 @@ def getworkers():
 @app.route("/workers/delete/<string:researcherID>/<string:projectID>", methods = ["POST"])
 def deleteWorker(researcherID, projectID):
     """
-    Delete student by id from database
+    Delete researcher by id from database
     """
     query = f"DELETE FROM researcher_works_on_project WHERE researcher_id = '{researcherID}'\
              and project_id = '{projectID}';"
     try:
         cur = db.connection.cursor()
-        print(query)
         cur.execute(query)
         db.connection.commit()
         cur.close()
@@ -525,13 +519,11 @@ def updatescifi(Name1):
     """
     Update a researcher in the database, by id
     """
-    print(Name1)
     Name1 = Name1.replace("%20", " ")
     form = SciForm()
     updateData = form.__dict__
     #if(form.validate_on_submit()):
     query = "UPDATE scientific_field SET name = '{}' WHERE name = '{}';".format(updateData['Name'].data, Name1)
-    print(query)
     try:
         cur = db.connection.cursor()
         cur.execute(query)
@@ -548,7 +540,6 @@ def createscifi():
     Create new Scientific Field in the database
     """
     form = SciForm()
-    print("beep")
     ## when the form is submitted
     if(request.method == "POST" and form.validate_on_submit()):
         newscifi = form.__dict__
@@ -568,7 +559,6 @@ def createscifi():
 
 @app.route("/scifi/<string:Name1>", methods = ["POST"])
 def infoscifi(Name1):
-    print
     """
     Querry 3.3
     """
@@ -576,7 +566,6 @@ def infoscifi(Name1):
     try:
         cur = db.connection.cursor()        
         query = f"select * from view33 where scientific_field_name = '{Name1}';"
-        #print(cur.description)
         cur.execute(query)
         message = "You want it? I got it! Here is everything about " + Name1
         flash(message, "primary")
@@ -623,10 +612,8 @@ def updateCompany(companyID):
              updateData['abbreviation'].data,\
              updateData['postal_code'].data, updateData['street'].data, updateData['street_number'].data,\
              updateData['city'].data, companyID)
-        print(query1)
         query2 = "UPDATE company SET equaty_capitals = '{}' WHERE foundation_id = '{}';".\
                 format(updateData['equaty_capitals'].data, companyID)
-        print(query2)
         try:
             cur = db.connection.cursor()
             cur.execute(query1)
@@ -769,10 +756,8 @@ def updateuniversity(companyID):
              updateData['abbreviation'].data,\
              updateData['postal_code'].data, updateData['street'].data, updateData['street_number'].data,\
              updateData['city'].data, companyID)
-        print(query1)
         query2 = "UPDATE university SET min_edu_budget = '{}' WHERE foundation_id = '{}';".\
                 format(updateData['min_edu_budget'].data, companyID)
-        print(query2)
         try:
             cur = db.connection.cursor()
             cur.execute(query1)
@@ -890,10 +875,8 @@ def updateresearch_center(companyID):
              updateData['abbreviation'].data,\
              updateData['postal_code'].data, updateData['street'].data, updateData['street_number'].data,\
              updateData['city'].data, companyID)
-        print(query1)
         query2 = "UPDATE research_center SET min_edu_budget = '{}', private_budget = '{}' WHERE foundation_id = '{}';".\
                 format(updateData['min_edu_budget'].data, updateData['private_budget'].data, companyID)
-        print(query2)
         try:
             cur = db.connection.cursor()
             cur.execute(query1)
@@ -1095,7 +1078,6 @@ def createdeliverable():
     column_names = [i[0] for i in cur.description]
     projects = [dict(zip(column_names, entry)) for entry in cur.fetchall()]
     ###################################################################
-    print("Query 1")
     cur.close()
     
     if(request.method == "POST" and form.validate_on_submit()):
@@ -1103,9 +1085,7 @@ def createdeliverable():
         query = "INSERT INTO deliverable(title, summary, submission_date, project_id) VALUES ('{}', '{}','{}', '{}');"\
                 .format(newdeliverable['title'].data, newdeliverable['summary'].data
                        ,newdeliverable['submission_date'].data, newdeliverable['project_id'].data)
-        print("2 " + query)
         try:
-            print("I am in try")
             cur = db.connection.cursor()
             cur.execute(query)
             db.connection.commit()
@@ -1269,13 +1249,12 @@ def getpsf():
 @app.route("/psf/delete/<string:sfn>/<string:projectID>", methods = ["POST"])
 def deletepsf(sfn, projectID):
     """
-    Delete student by id from database
+    Delete researcher by id from database
     """
     query = f"DELETE FROM project_scientific_field WHERE scientific_field_name = '{projectID}'\
              and project_id = '{sfn}';"
     try:
         cur = db.connection.cursor()
-        print(query)
         cur.execute(query)
         db.connection.commit()
         cur.close()

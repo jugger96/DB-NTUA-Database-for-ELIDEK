@@ -85,7 +85,7 @@
 }
 
 .st0 {
-  fill: #fff;
+  fill: rgb(177, 218, 248);
 }
 
 .st2 {
@@ -98,7 +98,7 @@
 
 .st4,
 .st6 {
-  fill: #fff;
+  fill: rgb(173, 215, 236);
   stroke: #b3dcdf;
   stroke-miterlimit: 10;
 }
@@ -123,7 +123,7 @@
 
 .st8,
 .st9 {
-  fill: #fff;
+  fill: rgb(156, 217, 246);
 }
 
 .st9 {
