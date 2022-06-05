@@ -39,7 +39,14 @@ This package integrates the [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) 
 
 Τέλος εκτελούμε το αρχείο `run.py` και μπορούμε να ανοίξουμε τη βάση στο browser στη διεύθυνση που ορίζει ο host (by default: http://localhost:3000). 
 
-## Good Practices
+## Good Practice
 
 Να μη γράφετε τίποτα με κεφαλαία γράμματα.
+
+## Webapp Screenshots
+
+![add_researcher](https://user-images.githubusercontent.com/96352707/172066933-d9c87d29-adfd-4a59-a914-697e3669d07e.png)
+![landing](https://user-images.githubusercontent.com/96352707/172066935-45b3c8c7-42ab-425d-b294-c4683e14519e.jpeg)
+![edit_researcher](https://user-images.githubusercontent.com/96352707/172066936-59ccdd40-b6b4-4570-8eb8-417b82ebf881.png)
+
 
