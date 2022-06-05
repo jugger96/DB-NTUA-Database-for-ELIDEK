@@ -1,0 +1,71 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+
+    <div class="col-md-12">
+        <form class="form-horizontal" name="student-form" method="POST">
+            <!-- hidden_tag returns the form's security metadata -->
+            {{ form.hidden_tag() }}
+    </div>
+    <div class="form-group col-sm-3 mb-3">
+        {{ form.title.label(class = "form-label") }}
+        <!-- Setting required to false disables the HTML attribute and leaves input validation to the backend -->
+        {{ form.title(class = "form-control", placeholder="Enter Program Name", required = False) }}
+        {% if form.title.errors %}
+        <ul class="errors">
+            {% for error in form.title.errors %}
+            <li class="text-danger">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="form-group col-sm-3 mb-3">
+        {{ form.summary.label(class = "form-label") }}
+        {{ form.summary(class = "form-control", placeholder="Enter ELIDEK_Sector", required = False) }}
+        {% if form.summary.errors %}
+        <ul class="errors">
+            {% for error in form.summary.errors %}
+            <li class="text-danger">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="form-group col-sm-3 mb-3">
+        {{ form.submission_date.label(class = "form-label") }}
+        <!-- Setting required to false disables the HTML attribute and leaves input validation to the backend -->
+        {{ form.submission_date(class = "form-control", placeholder="Enter ELIDEK_Sector", required = False) }}
+        {% if form.submission_date.errors %}
+        <ul class="errors">
+            {% for error in form.submission_date.errors %}
+            <li class="text-danger">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="form-group col-sm-3 mb-3">
+        <select name="project_id">
+            <option selected disabled>Choose Project</option>
+            {% for s in projects %}
+            <option value="{{ s.ID }}">{{ s.ID }} - {{ s.u }}</option>
+            {% endfor %}
+        </select>
+        <!--{{ form.project_id.label(class = "form-label") }}
+        {{ form.project_id(class = "form-control", placeholder="Enter ELIDEK_Sector", required = False) }}
+        {% if form.project_id.errors %}
+        <ul class="errors">
+            {% for error in form.project_id.errors %}
+            <li class="text-danger">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}-->
+    </div>
+    <div class="form-group col-sm-10 mb-3">
+        {{ form.submit(class = "btn btn-primary btn-submit-custom") }}
+    </div>
+    </form>
+
+</div>
+
+</div>
+{% endblock content %}

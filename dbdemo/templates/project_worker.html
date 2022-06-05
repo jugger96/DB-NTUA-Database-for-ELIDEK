@@ -1,0 +1,40 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+
+    <div class="col-md-12">
+        <form class="form-horizontal" name="student-form" method="POST">
+            <!-- hidden_tag returns the form's security metadata -->
+            {{ form.hidden_tag() }}
+    </div>
+    <div class="row" id="row">
+        <div class="form-group col-sm-3 mb-3">
+            <label>Assign a Researcher as a worker:</label>
+            <select name="researcher_id">
+                <option selected disabled> </option>
+                {% for r in ress %}
+                <option value="{{ r.id }}">{{ r.id }}: {{ r.last_name }} {{ r.first_name }}</option>
+                {% endfor %}
+            </select>
+            <!-- Setting required to false disables the HTML attribute and leaves input validation to the backend -->
+            <!--{{ form.researcher_id.label(class = "form-label") }}
+            
+            {{ form.researcher_id(class = "form-control", placeholder="Enter Researcher's SSN (xxx-xx-xxxx)", required =
+            False) }}
+            {% if form.researcher_id.errors %}
+            <ul class="errors">
+                {% for error in form.researcher_id.errors %}
+                <li class="text-danger">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}-->
+        </div>
+        <div class="form-group col-sm-10 mb-3">
+            {{ form.submit(class = "btn btn-primary btn-submit-custom") }}
+            <a class="btn btn-primary" id="show-btn" href="/project">Finish Assigning Researchers</a>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock content %}

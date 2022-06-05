@@ -1,0 +1,55 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+    
+        <div class="col-md-12">
+            <form class="form-horizontal" name="student-form" method="POST">
+                <!-- hidden_tag returns the form's security metadata -->
+                {{ form.hidden_tag() }}
+            </div>
+            <div class="form-group col-sm-3 mb-3">
+                <select name = "Project_ID">
+                    <option selected disabled>Choose Project</option>
+                    {% for s in projects %}
+                    <option value = "{{ s.id }}">{{ s.id }} - {{ s.title }}</option>
+                    {% endfor %}
+                </select>
+        <!--        {{ form.Project_ID.label(class = "form-label") }}
+                 Setting required to false disables the HTML attribute and leaves input validation to the backend 
+                {{ form.Project_ID(class = "form-control", placeholder="Enter Project ID", required = False) }}
+                {% if form.Project_ID.errors %}
+                <ul class = "errors">
+                    {% for error in form.Project_ID.errors %}
+                    <li class = "text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}-->
+            </div>  
+            <div class="form-group col-sm-3 mb-3">
+                <select name = "Scientific_Field_Name">
+                    <option selected disabled>Choose Scientific Field Name</option>
+                    {% for s in sfns %}
+                    <option value = "{{ s.Name }}">{{ s.Name }}</option>
+                    {% endfor %}
+                </select>
+  <!--            {{ form.Scientific_Field_Name.label(class = "form-label") }}
+                {{ form.Scientific_Field_Name(class = "form-control", placeholder="Enter Scientific Field Name (eg: Mathematics)", required = False) }}
+                {% if form.Scientific_Field_Name.errors %}
+                <ul class = "errors">
+                    {% for error in form.Scientific_Field_Name.errors %}
+                    <li class = "text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} -->  
+            </div>
+                             
+            <div class="form-group col-sm-10 mb-3">
+                {{ form.submit(class = "btn btn-primary btn-submit-custom") }}
+            </div>
+            </form>
+         
+    </div>
+    
+</div>
+{% endblock content %}

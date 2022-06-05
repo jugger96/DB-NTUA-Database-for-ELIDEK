@@ -1,0 +1,156 @@
+{% extends "global_layout.html" %}
+{% block content %}
+<div class="container">
+    {% include "flash_messages.html" %}
+    <div class="row" id="row">
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">View Projects</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.1</b>
+                        <br>View and Search Projects and ****CRUD functions****<br></p>
+                    <a class="btn btn-primary" id="show-btn" href="/project">Show</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">View Researchers</h4>
+                    <p class="card-text" id="paragraph">View Researchers and CRUD functions</p>
+                    <a class="btn btn-primary" id="show-btn" href="/researcher">Show</a>
+                </div>
+            </div>
+        </div> 
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Some views</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.2</b><br></p>
+                    <a class="btn btn-primary" id="show-btn" href="/workers">View 3.2a: Projects per Researcher + CRUD</a><br><br>
+                    <a class="btn btn-primary" id="show-btn" href="/company">View 3.2b: Companies</a>
+                </div>
+            </div>
+        </div>       
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">View Scientific Fields</h4><b>Query 3.3</b><br>
+                    <p class="card-text" id="paragraph">View Scientific Fields, CRUD functions and info about a popular field<br></p>
+                    <a class="btn btn-primary" id="show-btn" href="/scifi">Show</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="row-2">
+        <div class="col-md-2">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                    <h5 class="card-title">Magic Foundations</h5>
+                    <p class="card-text" id="paragraph"><b>Query 3.4</b> <br>{{string1}}.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Top 3 pairs of scientific fields</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.5</b>
+                        <br><b>Pair 1: </b>{{string2}}
+                        <br><b>Pair 2: </b>{{string3}}
+                        <br><b>Pair 3: </b>{{string4}}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Top 5 young Researchers</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.6</b>
+                        <br><b>1. </b>{{string10}}
+                        <br><b>2. </b>{{string11}}
+                        <br><b>3. </b>{{string12}}
+                        <br><b>4. </b>{{string13}}
+                        <br><b>5. </b>{{string14}}<br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="row-2">
+        <div class="col-md-8">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Top 5 Executives</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.7</b>
+                        <br><b>1. </b>{{string5}}
+                        <br><b>2. </b>{{string6}}
+                        <br><b>3. </b>{{string7}}
+                        <br><b>4. </b>{{string8}}
+                        <br><b>5. </b>{{string9}}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Researchers working on 5 or more projects with no deliverables</h4>
+                    <p class="card-text" id="paragraph"><b>Query 3.8</b><br></p>
+                    <a class="btn btn-primary" id="show-btn" href="/researcher/Query38">Show</a>
+                </div>
+            </div>
+        </div>            
+    </div>
+    <div class="row" id="row-2">
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">View Foundations</h4>
+                    <p class="card-text" id="paragraph">View and Search Projects and ****CRUD functions****</p>
+                    <a class="btn btn-primary" id="show-btn" href="/company">Companies</a>
+                    <a class="btn btn-primary" id="show-btn" href="/university">Universities</a><br><br>
+                    <a class="btn btn-primary" id="show-btn" href="/research_center">Research Centers</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Programs</h4>
+                    <p class="card-text" id="paragraph">View Programs and CRUD functions </p>
+                    <a class="btn btn-primary" id="show-btn" href="/program">Show</a>
+                </div>
+            </div>
+        </div> 
+        <div class="col-md-2">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h5 class="card-title">Deliverables</h5>
+                    <p class="card-text" id="paragraph"> View Deliverables and CRUD functions </p>
+                    <a class="btn btn-primary" id="show-btn" href="/deliverable">Show</a>
+                </div>
+            </div>
+        </div>       
+        <div class="col-md-2">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Executives</h4>
+                    <p class="card-text" id="paragraph"> View Executives and CRUD functions </p>
+                    <a class="btn btn-primary" id="show-btn" href="/executive">Show</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" id="card-container-layout">
+                <div class="card-body" id="card">
+                    <h4 class="card-title">Scientific Fileds per Project</h4>
+                    <p class="card-text" id="paragraph"> View Scientific Fileds - Project and CRUD functions </p>
+                    <a class="btn btn-primary" id="show-btn" href="/psf">Show</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

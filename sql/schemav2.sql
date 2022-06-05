@@ -23,11 +23,11 @@ USE `mydb` ;
 
 DROP TABLE IF EXISTS `Executive`;
 CREATE TABLE IF NOT EXISTS `Executive` (
-  `ID` VARCHAR(45) NOT NULL,
-  `First_Name` VARCHAR(45) NOT NULL,
-  `Last_Name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+    `ID` VARCHAR(45) NOT NULL,
+    `First_Name` VARCHAR(45) NOT NULL,
+    `Last_Name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`ID`)
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -35,11 +35,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Program`;
 CREATE TABLE IF NOT EXISTS `Program` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
-  `ELIDEK_Sector` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+    `ID` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(45) NOT NULL,
+    `ELIDEK_Sector` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`ID`)
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -47,19 +47,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Foundation`;
 CREATE TABLE IF NOT EXISTS `Foundation` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
-  `Abbreviation` VARCHAR(45) NOT NULL,
-  `Postal_Code` INT NOT NULL,
-  `Street` VARCHAR(45) NOT NULL,
-  `Street_Number` VARCHAR(10) NOT NULL,
-  `City` VARCHAR(45) NOT NULL,
-  `Foundation_Phone_1`VARCHAR(45) NOT NULL,
-  `Foundation_Phone_2` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`)
-  )
-ENGINE = InnoDB
-ROW_FORMAT = DEFAULT;
+    `ID` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(45) NOT NULL,
+    `Abbreviation` VARCHAR(45) NOT NULL,
+    `Postal_Code` INT NOT NULL,
+    `Street` VARCHAR(45) NOT NULL,
+    `Street_Number` VARCHAR(10) NOT NULL,
+    `City` VARCHAR(45) NOT NULL,
+    `Foundation_Phone_1` VARCHAR(45) NOT NULL,
+    `Foundation_Phone_2` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`ID`)
+)  ENGINE=INNODB ROW_FORMAT=DEFAULT;
 
 
 -- -----------------------------------------------------
@@ -67,16 +65,14 @@ ROW_FORMAT = DEFAULT;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Foundation_Extra_Phones`;
 CREATE TABLE IF NOT EXISTS `Foundation_Extra_Phones` (
-  `Phone_Number` VARCHAR(45) NOT NULL,
-  `Foundation_ID` INT NOT NULL,
-  PRIMARY KEY (`Phone_Number`),
-  INDEX `fk_Foundation_Extra_Phones_Foundation1_idx` (`Foundation_ID` ASC),
-  CONSTRAINT `fk_Foundation_Extra_Phones_Foundation1`
-    FOREIGN KEY (`Foundation_ID`)
-    REFERENCES `Foundation` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `Phone_Number` VARCHAR(45) NOT NULL,
+    `Foundation_ID` INT NOT NULL,
+    PRIMARY KEY (`Phone_Number`),
+    INDEX `fk_Foundation_Extra_Phones_Foundation1_idx` (`Foundation_ID` ASC),
+    CONSTRAINT `fk_Foundation_Extra_Phones_Foundation1` FOREIGN KEY (`Foundation_ID`)
+        REFERENCES `Foundation` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -107,22 +103,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Researcher_works_on_Project`;
 CREATE TABLE IF NOT EXISTS `Researcher_works_on_Project` (
-  `Researcher_ID` VARCHAR(45) NOT NULL,
-  `Project_ID` INT NOT NULL,
-  PRIMARY KEY (`Researcher_ID`, `Project_ID`),
-  INDEX `fk_Researcher_has_Project_Project1_idx` (`Project_ID` ASC),
-  INDEX `fk_Researcher_has_Project_Researcher1_idx` (`Researcher_ID` ASC),
-  CONSTRAINT `fk_Researcher_works_on_Project_Researcher1`
-    FOREIGN KEY (`Researcher_ID`)
-    REFERENCES `Researcher` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_Researcher_works_on_Project_Project1`
-    FOREIGN KEY (`Project_ID`)
-    REFERENCES `Project` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `Researcher_ID` VARCHAR(45) NOT NULL,
+    `Project_ID` INT NOT NULL,
+    PRIMARY KEY (`Researcher_ID` , `Project_ID`),
+    INDEX `fk_Researcher_has_Project_Project1_idx` (`Project_ID` ASC),
+    INDEX `fk_Researcher_has_Project_Researcher1_idx` (`Researcher_ID` ASC),
+    CONSTRAINT `fk_Researcher_works_on_Project_Researcher1` FOREIGN KEY (`Researcher_ID`)
+        REFERENCES `Researcher` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_Researcher_works_on_Project_Project1` FOREIGN KEY (`Project_ID`)
+        REFERENCES `Project` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -130,9 +122,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Scientific_Field`;
 CREATE TABLE IF NOT EXISTS `Scientific_Field` (
-  `Name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Name`))
-ENGINE = InnoDB;
+    `Name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`Name`)
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -140,22 +132,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Project_Scientific_Field`;
 CREATE TABLE IF NOT EXISTS `mydb`.`Project_Scientific_Field` (
-  `Project_ID` INT NOT NULL,
-  `Scientific_Field_Name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Project_ID`, `Scientific_Field_Name`),
-  INDEX `fk_Project_has_Scientific_Field_Project1_idx` (`Project_ID` ASC),
-  INDEX `fk_Project_Scientific_Field_Scientific_Field1_idx` (`Scientific_Field_Name` ASC),
-  CONSTRAINT `fk_Project_has_Scientific_Field_Project1`
-    FOREIGN KEY (`Project_ID`)
-    REFERENCES `mydb`.`Project` (`ID`)
-    ON DELETE cascade
-    ON UPDATE cascade,
-  CONSTRAINT `fk_Project_Scientific_Field_Scientific_Field1`
-    FOREIGN KEY (`Scientific_Field_Name`)
-    REFERENCES `mydb`.`Scientific_Field` (`Name`)
-    ON DELETE NO ACTION
-    ON UPDATE cascade)
-ENGINE = InnoDB;
+    `Project_ID` INT NOT NULL,
+    `Scientific_Field_Name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`Project_ID` , `Scientific_Field_Name`),
+    INDEX `fk_Project_has_Scientific_Field_Project1_idx` (`Project_ID` ASC),
+    INDEX `fk_Project_Scientific_Field_Scientific_Field1_idx` (`Scientific_Field_Name` ASC),
+    CONSTRAINT `fk_Project_has_Scientific_Field_Project1` FOREIGN KEY (`Project_ID`)
+        REFERENCES `mydb`.`Project` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_Project_Scientific_Field_Scientific_Field1` FOREIGN KEY (`Scientific_Field_Name`)
+        REFERENCES `mydb`.`Scientific_Field` (`Name`)
+        ON DELETE NO ACTION ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -163,77 +151,63 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Project`;
 CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(79) NOT NULL,
-  `Start_Date` DATE NOT NULL,
-  `End_Date` DATE NOT NULL,
-  `Summary` TEXT NULL,
-  `Funding` FLOAT NOT NULL,
-  `Executive_ID` VARCHAR(45) NOT NULL,
-  `Program_ID` INT NOT NULL,
-  `Foundation_ID` INT NOT NULL,
-  `Researcher_ID_Boss` VARCHAR(45) NOT NULL,
-  `Researcher_ID_eval` VARCHAR(45) NOT NULL,
-  `Evaluation_date` DATE NOT NULL,
-  `Evaluation_Grade` FLOAT NOT NULL,
-  `Scientific_Field_Name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`),
-  INDEX `fk_Project_Executive1_idx` (`Executive_ID` ASC),
-  INDEX `fk_Project_Program1_idx` (`Program_ID` ASC),
-  INDEX `fk_Project_Foundation1_idx` (`Foundation_ID` ASC),
-  INDEX `fk_Project_Researcher2_idx` (`Researcher_ID_Boss` ASC),
-  INDEX `fk_Project_Researcher3_idx` (`Researcher_ID_eval` ASC),
-  INDEX `fk_Project_Scientific_Field1_idx` (`Scientific_Field_Name` ASC),
-  CONSTRAINT `fk_Project_Executive1`
-    FOREIGN KEY (`Executive_ID`)
-    REFERENCES `mydb`.`Executive` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Project_Program1`
-    FOREIGN KEY (`Program_ID`)
-    REFERENCES `mydb`.`Program` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Project_Foundation1`
-    FOREIGN KEY (`Foundation_ID`)
-    REFERENCES `mydb`.`Foundation` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Project_Researcher2`
-    FOREIGN KEY (`Researcher_ID_Boss`)
-    REFERENCES `mydb`.`Researcher` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Project_Researcher3`
-    FOREIGN KEY (`Researcher_ID_eval`)
-    REFERENCES `mydb`.`Researcher` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Project_Scientific_Field1`
-    FOREIGN KEY (`Scientific_Field_Name`)
-    REFERENCES `mydb`.`Scientific_Field` (`Name`)
-    ON DELETE NO ACTION
-    ON UPDATE cascade)
-ENGINE = InnoDB;
+    `ID` INT NOT NULL AUTO_INCREMENT,
+    `Title` VARCHAR(79) NOT NULL,
+    `Start_Date` DATE NOT NULL,
+    `End_Date` DATE NOT NULL,
+    `Summary` TEXT NULL,
+    `Funding` FLOAT NOT NULL,
+    `Executive_ID` VARCHAR(45) NOT NULL,
+    `Program_ID` INT NOT NULL,
+    `Foundation_ID` INT NOT NULL,
+    `Researcher_ID_Boss` VARCHAR(45) NOT NULL,
+    `Researcher_ID_eval` VARCHAR(45) NOT NULL,
+    `Evaluation_date` DATE NOT NULL,
+    `Evaluation_Grade` FLOAT NOT NULL,
+    `Scientific_Field_Name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`ID`),
+    INDEX `fk_Project_Executive1_idx` (`Executive_ID` ASC),
+    INDEX `fk_Project_Program1_idx` (`Program_ID` ASC),
+    INDEX `fk_Project_Foundation1_idx` (`Foundation_ID` ASC),
+    INDEX `fk_Project_Researcher2_idx` (`Researcher_ID_Boss` ASC),
+    INDEX `fk_Project_Researcher3_idx` (`Researcher_ID_eval` ASC),
+    INDEX `fk_Project_Scientific_Field1_idx` (`Scientific_Field_Name` ASC),
+    CONSTRAINT `fk_Project_Executive1` FOREIGN KEY (`Executive_ID`)
+        REFERENCES `mydb`.`Executive` (`ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Project_Program1` FOREIGN KEY (`Program_ID`)
+        REFERENCES `mydb`.`Program` (`ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Project_Foundation1` FOREIGN KEY (`Foundation_ID`)
+        REFERENCES `mydb`.`Foundation` (`ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Project_Researcher2` FOREIGN KEY (`Researcher_ID_Boss`)
+        REFERENCES `mydb`.`Researcher` (`ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Project_Researcher3` FOREIGN KEY (`Researcher_ID_eval`)
+        REFERENCES `mydb`.`Researcher` (`ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Project_Scientific_Field1` FOREIGN KEY (`Scientific_Field_Name`)
+        REFERENCES `mydb`.`Scientific_Field` (`Name`)
+        ON DELETE NO ACTION ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 -- -----------------------------------------------------
 -- Table `Deliverable`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Deliverable`;
 CREATE TABLE IF NOT EXISTS `Deliverable` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(45) NOT NULL,
-  `Summary` TEXT NULL,
-  `Submission_Date` DATE NOT NULL,
-  `Project_ID` INT NOT NULL,
-  PRIMARY KEY (`ID`),
-  INDEX `fk_Deliverable_Project1_idx` (`Project_ID` ASC),
-  CONSTRAINT `fk_Deliverable_Project1`
-    FOREIGN KEY (`Project_ID`)
-    REFERENCES `Project` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `ID` INT NOT NULL AUTO_INCREMENT,
+    `Title` VARCHAR(45) NOT NULL,
+    `Summary` TEXT NULL,
+    `Submission_Date` DATE NOT NULL,
+    `Project_ID` INT NOT NULL,
+    PRIMARY KEY (`ID`),
+    INDEX `fk_Deliverable_Project1_idx` (`Project_ID` ASC),
+    CONSTRAINT `fk_Deliverable_Project1` FOREIGN KEY (`Project_ID`)
+        REFERENCES `Project` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -241,15 +215,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Company`;
 CREATE TABLE IF NOT EXISTS `Company` (
-  `Equaty_Capitals` VARCHAR(45) NOT NULL,
-  `Foundation_ID` INT NOT NULL,
-  PRIMARY KEY (`Foundation_ID`),
-  CONSTRAINT `fk_Company_Foundation1`
-    FOREIGN KEY (`Foundation_ID`)
-    REFERENCES `Foundation` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `Equaty_Capitals` VARCHAR(45) NOT NULL,
+    `Foundation_ID` INT NOT NULL,
+    PRIMARY KEY (`Foundation_ID`),
+    CONSTRAINT `fk_Company_Foundation1` FOREIGN KEY (`Foundation_ID`)
+        REFERENCES `Foundation` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -257,15 +229,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `University`;
 CREATE TABLE IF NOT EXISTS `University` (
-  `Min_Edu_Budget` VARCHAR(45) NOT NULL,
-  `Foundation_ID` INT NOT NULL,
-  PRIMARY KEY (`Foundation_ID`),
-  CONSTRAINT `fk_University_Foundation1`
-    FOREIGN KEY (`Foundation_ID`)
-    REFERENCES `Foundation` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `Min_Edu_Budget` VARCHAR(45) NOT NULL,
+    `Foundation_ID` INT NOT NULL,
+    PRIMARY KEY (`Foundation_ID`),
+    CONSTRAINT `fk_University_Foundation1` FOREIGN KEY (`Foundation_ID`)
+        REFERENCES `Foundation` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 -- -----------------------------------------------------
@@ -273,16 +243,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Research_Center`;
 CREATE TABLE IF NOT EXISTS `Research_Center` (
-  `Min_Edu_Budget` VARCHAR(45) NOT NULL,
-  `Private_Budget` VARCHAR(45) NOT NULL,
-  `Foundation_ID` INT NOT NULL,
-  PRIMARY KEY (`Foundation_ID`),
-  CONSTRAINT `fk_Research_Center_Foundation1`
-    FOREIGN KEY (`Foundation_ID`)
-    REFERENCES `Foundation` (`ID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    `Min_Edu_Budget` VARCHAR(45) NOT NULL,
+    `Private_Budget` VARCHAR(45) NOT NULL,
+    `Foundation_ID` INT NOT NULL,
+    PRIMARY KEY (`Foundation_ID`),
+    CONSTRAINT `fk_Research_Center_Foundation1` FOREIGN KEY (`Foundation_ID`)
+        REFERENCES `Foundation` (`ID`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

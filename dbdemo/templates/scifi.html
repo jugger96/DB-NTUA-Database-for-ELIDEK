@@ -1,0 +1,120 @@
+{% extends "global_layout.html" %}
+{% block content %}
+
+<div class="container">
+    {% include "flash_messages.html" %}
+    <div class="row" id="row">
+        <div class="col-md-12">
+            <div class="card" id="card-container">
+                <div class="card-body" id="card">
+                {% if scifi|length == 0 %}
+                    <h1 style="margin-top: 5rem;">No Researchers found!</h1>
+                {% else %}
+                    <div class="table-responsive">                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <a class="btn btn-primary" id="show-btn" href="/scifi/create">Add new Scientific Field</a>
+                                    <th>Name</th>                                    
+                                    <th></th>                                    
+                                    <th><b>Query 3.3</b></tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in scifi %}
+                                    <tr>
+                                        <td> {{ s.Name }} </td>
+                                        <td>
+                                            <a type="button" onclick="setModalFields(this)"
+                                            data-toggle="modal"
+                                            data-Name="{{ s.Name }}"                                            
+                                            data-bs-toggle = "modal"
+                                            data-bs-target="#editModal">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </td>                                        
+                                        <td>
+                                            <button style = "all: unset; cursor: pointer;" type = "button"
+                                            data-bs-toggle = "modal" data-bs-target = "#infoModal"
+                                            data-Name = "{{ s.Name }}" onclick = "setInfoModalFields(this)">
+                                                <a class = "btn btn-primary" id="show-btn">info</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit modal -->
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Scientific Field</h4>
+            </div>
+            <div class="modal-body">
+                <form id="modal-form">
+                    <div style="text-align: center;">
+                        {{ form.Name(id = "Name", required = TRUE) }}
+                    </div>
+                      
+                </form>
+            </div>
+            <div class="modal-footer">
+                {{ form.submit(class = "btn btn btn-success", form = "modal-form", value = "Update") }}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Info modal -->
+<div class = "modal fade" id="infoModal">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <h5 class = "modal-title" id = "deleteModalLabel">Interested in this Field?</h5>
+                <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+            </div>
+            <div class = "modal-body">
+                Now you will see the researchers and the projects associated with this field at the last year
+            </div>
+            <div class = "modal-footer">
+                <button type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">Close</button>
+                <form id = "delete-modal-form">
+                    <input type = "submit" class = "btn btn btn-success" value = "Show me">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<script>
+    function setModalFields(row) {
+        document.getElementById("Name").value = row.getAttribute("data-Name");
+        document.getElementById("modal-form").action = "/scifi/update/" + row.getAttribute("data-Name");
+        document.getElementById("modal-form").method = "POST";
+        // document.getElementById("submit").addEventListener("click", (e) => {e.preventDefault();});
+        // commented line above would prevent the default behavior of the submit button, that is, sending the
+        // form data with a post request to the determined address and subsequently closing the pop-up
+    }
+
+    function setInfoModalFields(row) {
+        document.getElementById("delete-modal-form").action = "/scifi/" + row.getAttribute("data-Name");
+        document.getElementById("delete-modal-form").method = "POST";
+    }
+</script>
+{% endblock content %}
