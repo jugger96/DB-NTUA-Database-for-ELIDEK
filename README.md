@@ -26,11 +26,17 @@ This package integrates the [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) 
 ## Installation Guide
 
 Αρχικά κατεβάζουμε το anaconda από το εδώ και το εγκαθιστούμε https://repo.anaconda.com/archive/Anaconda3-2022.05-Windows-x86_64.exe.
+
 Από το command promt του ανακόντα με χρήση του cd μπαίνουμε στο directory του folder που κατεβάσαμε από το github.
+
 Έπειτα πληκτρολογούμε και τρέχουμε την εντολή “pip install requirements.txt” ώστε να εγκαταστήσουμε όλα τα απαραίτητα πακέτα για το framework  του webapp και για τη σύνδεση της βάσης  με αυτό.
+
 Στη συνέχεια ,και αφού έχουμε κατοχυρώσει και επιβεβαιώσει σύνδεση κάνοντας χρήση του xampp (“run as administrator”), εκτελούμε τα αρχεία “schema.sql”, “triggers.sql”, “views.sql” και “data.sql” με την σειρά που αναγράφονται, ενδεικτικά μέσω του MySQL wokbench, έτσι ώστε να φτιάξουμε τη βάση μας, με όλα τα entities, triggers και views που είναι απαραίτητα για την ορθή λειτουργεία της, και να τη γεμίσουμε με δεδομένα.
+
 Ανοίγουμε ολόκληρο το folder που κατεβάσαμε από το github με κάποιο idee,  επιβεβαιώνουμε ότι έχουμε ορίσει ως python interptreter τον anaconda3.Για το κάνουμε αυτό ευκολά θα μπορούσαμε να χρησιμοποιήσουμε ως idee το “Visual Studio Code”, ανοίγοντάς το από τον “Anaconda Navigator”.
+
 Μέσω του idee, βάζουμε στο αρχείο  “__init__.py” τα στοιχεία της βάσης και του “user”, προσοχή αν έχετε κωδικό για τον root user βγάλτε το πεδίο “app.config[MYSQL_PASSWORD]” από σχόλιο και πληκτρολογήστε σε αυτό τον κωδικό που έχετε ορίσει. 
+
 Τέλος εκτελούμε το αρχείο “run.py” και μπορούμε να ανοίξουμε τη βάση στο browser στη διεύθυνση που ορίζει ο host (by default: http://localhost:3000). 
 
 
