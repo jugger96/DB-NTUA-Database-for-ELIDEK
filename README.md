@@ -23,6 +23,15 @@ In order to send queries to a database from a Python program, a connection betwe
 
 This package integrates the [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) library with Flask. WTForms is used for secure input (form) validation and form rendering inside the templates. It provides security features such as [CSRF protection](https://en.wikipedia.org/wiki/Cross-site_request_forgery). Each field of a `FlaskForm` class is essentially rendered as the corresponding input tag in HTML.
 
+## Installation Guide
+
+Αρχικά κατεβάζουμε το anaconda από το εδώ και το εγκαθιστούμε.
+Από το command promt του ανακόντα με χρήση του cd μπαίνουμε στο directory του folder που κατεβάσαμε από το github.
+Έπειτα πληκτρολογούμε και τρέχουμε την εντολή “pip install requirements.txt” ώστε να εγκαταστήσουμε όλα τα απαραίτητα πακέτα για το framework  του webapp και για τη σύνδεση της βάσης  με αυτό.
+Στη συνέχεια ,και αφού έχουμε κατοχυρώσει και επιβεβαιώσει σύνδεση κάνοντας χρήση του xampp (“run as administrator”), εκτελούμε τα αρχεία “schema.sql”, “triggers.sql”, “views.sql” και “data.sql” με την σειρά που αναγράφονται, ενδεικτικά μέσω του MySQL wokbench, έτσι ώστε να φτιάξουμε τη βάση μας, με όλα τα entities, triggers και views που είναι απαραίτητα για την ορθή λειτουργεία της, και να τη γεμίσουμε με δεδομένα.
+Ανοίγουμε ολόκληρο το folder που κατεβάσαμε από το github με κάποιο idee,  επιβεβαιώνουμε ότι έχουμε ορίσει ως python interptreter τον anaconda3.Για το κάνουμε αυτό ευκολά θα μπορούσαμε να χρησιμοποιήσουμε ως idee το “Visual Studio Code”, ανοίγοντάς το από τον “Anaconda Navigator”.
+Μέσω του idee, βάζουμε στο αρχείο  “__init__.py” τα στοιχεία της βάσης και του “user”, προσοχή αν έχετε κωδικό για τον root user βγάλτε το πεδίο “app.config[MYSQL_PASSWORD]” από σχόλιο και πληκτρολογήστε σε αυτό τον κωδικό που έχετε ορίσει. 
+Τέλος εκτελούμε το αρχείο “run.py” και μπορούμε να ανοίξουμε τη βάση στο browser στη διεύθυνση που ορίζει ο host (by default: http://localhost:3000). 
 
 
 
