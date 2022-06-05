@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, abort
 from flask_mysqldb import MySQL
-from dbdemo import app, db ## initially created by __init__.py, need to be used here
-from dbdemo.forms import StudentForm, ResForm, CreResForm, ProjForm, SciForm, WorksForm, \
+from mydb import app, db ## initially created by __init__.py, need to be used here
+from mydb.forms import StudentForm, ResForm, CreResForm, ProjForm, SciForm, WorksForm, \
                         CompanyForm, CreCompanyForm, UniversityForm,CreUniversityForm,\
                         CreRCForm,RCForm, PhoneForm, programForm, deliverableForm, \
                         CredeliverableForm, CreExForm, ExForm, psfForm, UpProjForm, CreProjForm, project_worker
