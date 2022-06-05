@@ -1,4 +1,4 @@
-# Databases-Python-Demo
+# Databases - ΕΛΙΔΕΚ DB
 
 Adapted from [Databases-Java-Demo](https://github.com/ChristosHadjichristofi/Databases-Java-Demo) and [Databases-NodeJS-Demo](https://github.com/ChristosHadjichristofi/Databases-NodeJS-Demo), originally by [Christos Hadjichristofi](https://github.com/ChristosHadjichristofi).
 
