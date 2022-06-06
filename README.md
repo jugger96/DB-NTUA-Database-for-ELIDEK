@@ -51,11 +51,11 @@ Landing Page:
 
 Create a Researcher Page:
 
-![add_researcher](https://user-images.githubusercontent.com/96352707/172066933-d9c87d29-adfd-4a59-a914-697e3669d07e.png)
+   ![add_researcher](https://user-images.githubusercontent.com/96352707/172066933-d9c87d29-adfd-4a59-a914-697e3669d07e.png)
 
 Edit a Researcher Module:
 
-![edit_researcher](https://user-images.githubusercontent.com/96352707/172066936-59ccdd40-b6b4-4570-8eb8-417b82ebf881.png)
+   ![edit_researcher](https://user-images.githubusercontent.com/96352707/172066936-59ccdd40-b6b4-4570-8eb8-417b82ebf881.png)
 
 
 
